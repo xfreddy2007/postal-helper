@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台灣郵遞區號查詢</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>台灣郵遞區號查詢</h1>
+    <p class="subtitle">輸入地址以查詢6碼郵遞區號</p>
+
+    <form id="lookup-form">
+      <div class="input-row">
+        <input
+          type="text"
+          id="address"
+          name="address"
+          placeholder="例：台北市杭州南路一段23號"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="submit-btn">查詢</button>
+      </div>
+    </form>
+
+    <div id="result" class="result hidden"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
