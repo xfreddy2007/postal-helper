@@ -1,6 +1,6 @@
 # Taiwan Postal Helper
 
-A terminal-based tool for looking up Taiwan 6-digit (3+3) postal codes by address.
+A tool for looking up Taiwan 6-digit (3+3) postal codes by address — available as both a terminal CLI and a web application.
 
 > 100% built with [Claude Code](https://claude.ai/claude-code) — from initial implementation to testing and Git setup, every line of code and configuration was generated through conversation with Claude Code CLI.
 
@@ -8,7 +8,7 @@ A terminal-based tool for looking up Taiwan 6-digit (3+3) postal codes by addres
 
 ## Overview
 
-Taiwan upgraded its postal code system from 5-digit (3+2) to 6-digit (3+3) format in 2020. This tool lets you quickly query the correct postal code for any Taiwan address directly from your terminal, without needing to visit a website manually.
+Taiwan upgraded its postal code system from 5-digit (3+2) to 6-digit (3+3) format in 2020. This tool lets you quickly query the correct postal code for any Taiwan address — either from the terminal or through a browser-based web interface.
 
 It queries the community-maintained [zip5.5432.tw](http://zip5.5432.tw) API, which is built on data from Chunghwa Post (中華郵政). Results include:
 
@@ -20,6 +20,8 @@ It queries the community-maintained [zip5.5432.tw](http://zip5.5432.tw) API, whi
 
 ## Tech Stack
 
+### CLI
+
 | Layer | Technology |
 |---|---|
 | Language | Python 3.9+ |
@@ -28,6 +30,17 @@ It queries the community-maintained [zip5.5432.tw](http://zip5.5432.tw) API, whi
 | Postal code API | [zip5.5432.tw](http://zip5.5432.tw/zip5json.py) |
 
 No third-party packages required — runs on a clean Python installation.
+
+### Web
+
+| Layer | Technology |
+|---|---|
+| Language | Python 3.9+ |
+| Backend framework | Flask |
+| Frontend | Plain HTML, CSS, JavaScript (no framework) |
+| Postal code API | [zip5.5432.tw](http://zip5.5432.tw/zip5json.py) |
+
+The web backend imports the same `lookup_postal_code` function from `postal_helper.py`.
 
 ---
 
@@ -38,7 +51,22 @@ No third-party packages required — runs on a clean Python installation.
 - Python 3.9 or later
 - Internet connection
 
-### Interactive Mode
+### Web App
+
+Install dependencies and start the Flask server:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python3 app.py
+```
+
+Then open `http://127.0.0.1:5000` in your browser. Enter any Taiwan address to look up its 6-digit postal code.
+
+---
+
+### CLI — Interactive Mode
 
 Run without arguments to enter addresses one at a time:
 
@@ -59,7 +87,7 @@ python3 postal_helper.py
 
 Type `q` or press `Ctrl+C` to exit.
 
-### Batch Mode
+### CLI — Batch Mode
 
 Pass one or more addresses as command-line arguments:
 
